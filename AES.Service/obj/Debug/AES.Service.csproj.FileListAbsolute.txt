@@ -1,0 +1,15 @@
+C:\Employment\walmartlabs\AccessExternalService\AES.Service\bin\Debug\AES.Service.dll
+C:\Employment\walmartlabs\AccessExternalService\AES.Service\bin\Debug\AES.Service.pdb
+C:\Employment\walmartlabs\AccessExternalService\AES.Service\bin\Debug\AES.Data.dll
+C:\Employment\walmartlabs\AccessExternalService\AES.Service\bin\Debug\AES.Domains.dll
+C:\Employment\walmartlabs\AccessExternalService\AES.Service\bin\Debug\System.ValueTuple.dll
+C:\Employment\walmartlabs\AccessExternalService\AES.Service\bin\Debug\Newtonsoft.Json.dll
+C:\Employment\walmartlabs\AccessExternalService\AES.Service\bin\Debug\AES.Data.pdb
+C:\Employment\walmartlabs\AccessExternalService\AES.Service\bin\Debug\AES.Domains.pdb
+C:\Employment\walmartlabs\AccessExternalService\AES.Service\bin\Debug\System.ValueTuple.xml
+C:\Employment\walmartlabs\AccessExternalService\AES.Service\bin\Debug\Newtonsoft.Json.xml
+C:\Employment\walmartlabs\AccessExternalService\AES.Service\obj\Debug\AES.Service.csprojAssemblyReference.cache
+C:\Employment\walmartlabs\AccessExternalService\AES.Service\obj\Debug\AES.Service.csproj.CoreCompileInputs.cache
+C:\Employment\walmartlabs\AccessExternalService\AES.Service\obj\Debug\AES.Service.csproj.CopyComplete
+C:\Employment\walmartlabs\AccessExternalService\AES.Service\obj\Debug\AES.Service.dll
+C:\Employment\walmartlabs\AccessExternalService\AES.Service\obj\Debug\AES.Service.pdb

@@ -1,0 +1,16 @@
+﻿@model AES.Domains.Service.SearchResult
+
+<table class="table-striped">
+    @foreach (var product in Model.Products)
+    {
+        <tr>
+            <td class="usa-grid">
+                @Html.DisplayFor(model => product.ProductId)
+            </td>
+            <td class="usa-grid">
+                @Html.DisplayFor(model => product.ProductName)
+            </td>
+        </tr>
+
+    }
+</table>

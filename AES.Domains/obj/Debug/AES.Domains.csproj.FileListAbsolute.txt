@@ -1,0 +1,9 @@
+C:\Employment\walmartlabs\AccessExternalService\AES.Domains\bin\Debug\AES.Domains.dll
+C:\Employment\walmartlabs\AccessExternalService\AES.Domains\bin\Debug\AES.Domains.pdb
+C:\Employment\walmartlabs\AccessExternalService\AES.Domains\bin\Debug\System.ValueTuple.dll
+C:\Employment\walmartlabs\AccessExternalService\AES.Domains\bin\Debug\System.ValueTuple.xml
+C:\Employment\walmartlabs\AccessExternalService\AES.Domains\obj\Debug\AES.Domains.csproj.CoreCompileInputs.cache
+C:\Employment\walmartlabs\AccessExternalService\AES.Domains\obj\Debug\AES.Domains.csproj.CopyComplete
+C:\Employment\walmartlabs\AccessExternalService\AES.Domains\obj\Debug\AES.Domains.dll
+C:\Employment\walmartlabs\AccessExternalService\AES.Domains\obj\Debug\AES.Domains.pdb
+C:\Employment\walmartlabs\AccessExternalService\AES.Domains\obj\Debug\AES.Domains.csprojAssemblyReference.cache

@@ -1,0 +1,11 @@
+C:\Employment\walmartlabs\AccessExternalService\AES.Data\bin\Debug\AES.Data.dll
+C:\Employment\walmartlabs\AccessExternalService\AES.Data\bin\Debug\AES.Data.pdb
+C:\Employment\walmartlabs\AccessExternalService\AES.Data\bin\Debug\AES.Domains.dll
+C:\Employment\walmartlabs\AccessExternalService\AES.Data\bin\Debug\Newtonsoft.Json.dll
+C:\Employment\walmartlabs\AccessExternalService\AES.Data\bin\Debug\AES.Domains.pdb
+C:\Employment\walmartlabs\AccessExternalService\AES.Data\bin\Debug\Newtonsoft.Json.xml
+C:\Employment\walmartlabs\AccessExternalService\AES.Data\obj\Debug\AES.Data.csprojAssemblyReference.cache
+C:\Employment\walmartlabs\AccessExternalService\AES.Data\obj\Debug\AES.Data.csproj.CoreCompileInputs.cache
+C:\Employment\walmartlabs\AccessExternalService\AES.Data\obj\Debug\AES.Data.csproj.CopyComplete
+C:\Employment\walmartlabs\AccessExternalService\AES.Data\obj\Debug\AES.Data.dll
+C:\Employment\walmartlabs\AccessExternalService\AES.Data\obj\Debug\AES.Data.pdb
