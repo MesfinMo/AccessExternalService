@@ -10,8 +10,8 @@ namespace AES.Data.DataSources
     public interface IServiceContext
     {
         Task<ItemSearch> SearchItemByTextAsync(string  searchText);
-        Task<List<Item>> GetItemByItemIdAsync(int itemId);
+        Task<List<Item>> GetItemByItemIdAsync(string itemId);
 
-        Task<List<ItemRecommendation>> GetItemRecommendationByItemIdAsync(int itemId);
+        Task<List<ItemRecommendation>> GetItemRecommendationByItemIdAsync(string itemId);
     }
 }

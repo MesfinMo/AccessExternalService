@@ -8,7 +8,7 @@ namespace AES.Domains.WalmartApi
 {
     public class Item
     {
-        public int itemId { get; set; }
+        public string itemId { get; set; }
         public int parentItemId { get; set; }
         public string name { get; set; }
         public double salePrice { get; set; }

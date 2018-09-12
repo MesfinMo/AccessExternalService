@@ -10,15 +10,6 @@ namespace AES.Service.Mappings
 {
     public static class MappingExtensions
     {
-        //public static TDestination MapTo<TSource, TDestination>(this TSource source)
-        //{
-        //    return Mapper.Map<TSource, TDestination>(source);
-        //}
-
-        //public static TDestination MapTo<TSource, TDestination>(this TSource source, TDestination destination)
-        //{
-        //    return Mapper.Map(source, destination);
-        //}
 
 
         #region Product
@@ -36,10 +27,6 @@ namespace AES.Service.Mappings
         }
 
 
-        //public static Item ToEntity(this Product model)
-        //{
-        //    return model.MapTo<Product, Item>();
-        //}
 
 
         #endregion
@@ -55,52 +42,29 @@ namespace AES.Service.Mappings
                 TotalResult = entity.totalResults,
                 Index = entity.start,
                 ResultSize = entity.numItems,
-                Products = entity.items.Select(a => new Product()
+                SearchProducts = entity.items.Select(a => new SearchProduct()
                 {
-                    ProductId = a.itemId,
-                    ProductName = a.name,
-                    Price = a.salePrice,
-                    ShortDescription = a.shortDescription,
-                    ThumbnailUri = a.thumbnailImage
+                    ProductId = a.itemId
                 }).ToList()
             };
         }
 
-
-        //public static ItemSearch ToEntity(this SearchResult model)
-        //{
-        //    return model.MapTo<SearchResult, ItemSearch>();
-        //}
 
 
         #endregion
 
         #region Recommendation
 
-        //public static Recommendation ToModel(this ItemRecommendation entity)
-        //{
-        //    return entity.MapTo<ItemRecommendation, Recommendation>();
-        //}
 
         public static List<Recommendation> ToListModel(this List<ItemRecommendation> entities)
         {
             return entities.Select(e => new Recommendation()
             {
                 ProductId = e.itemId,
-                ProductName = e.name,
-                Price = e.salePrice,
-                ShortDescription = e.shortDescription,
-                ThumbnailUri = e.thumbnailImage,
                 OfferType = e.offerType,
                 IsTwoDayShippingEligible = e.isTwoDayShippingEligible
             }).ToList();
         }
-
-
-        //public static ItemRecommendation ToEntity(this Recommendation model)
-        //{
-        //    return model.MapTo<Recommendation, ItemRecommendation>();
-        //}
 
 
         #endregion

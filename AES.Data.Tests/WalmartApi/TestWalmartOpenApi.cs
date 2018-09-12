@@ -33,7 +33,7 @@ namespace AES.Data.Tests.WalmartApi
         {
             walmartService = new WalmartOpenApi();
 
-            var itemId = 12417832;
+            var itemId = "12417832";
 
             var result = await walmartService.GetItemByItemIdAsync(itemId);
 
@@ -46,7 +46,7 @@ namespace AES.Data.Tests.WalmartApi
         {
             walmartService = new WalmartOpenApi();
 
-            var itemId = 42608125;
+            var itemId = "42608125";
 
             var result = await walmartService.GetItemRecommendationByItemIdAsync(itemId);
 

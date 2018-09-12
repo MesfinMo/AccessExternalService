@@ -20,8 +20,8 @@ namespace AES.Data.Tests.Repositories
 
         public async Task GetItemsById_ShouldReturnRecommendationsForItem()
         {
-            var recommendations = new List<ItemRecommendation>() { new ItemRecommendation { itemId = 42608125, name = "Onn by Walmart skin for apple ipod touch", offerType = "ONLINE_AND_STORE" } };
-            var recommendItemId = 12417832;
+            var recommendations = new List<ItemRecommendation>() { new ItemRecommendation { itemId = "42608125", name = "Onn by Walmart skin for apple ipod touch", offerType = "ONLINE_AND_STORE" } };
+            var recommendItemId = "12417832";
 
             var mock = new Mock<IServiceContext>();
             mock.Setup(m => m.GetItemRecommendationByItemIdAsync(recommendItemId)).Returns(Task.FromResult(recommendations));
@@ -29,9 +29,9 @@ namespace AES.Data.Tests.Repositories
             recommendationRepository = new RecommendationRepository(mock.Object);
 
 
-            var result = await recommendationRepository.GetItemsByIdAsync(recommendItemId);
+            var result = await recommendationRepository.GetByIdAsync(recommendItemId);
 
-            Assert.AreEqual(result[0].itemId, 42608125);
+            Assert.AreEqual(result[0].itemId, "42608125");
             Assert.AreEqual(result[0].name, "Onn by Walmart skin for apple ipod touch");
             mock.VerifyAll();
 

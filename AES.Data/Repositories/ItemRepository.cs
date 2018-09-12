@@ -16,10 +16,10 @@ namespace AES.Data.Repositories
         {
             _serviceContext = serviceContext;
         }
-        public virtual async Task<Item> GetByIdAsync(int id)
+        public virtual async Task<List<Item>> GetByIdAsync(string id)
         {
             var result = await this._serviceContext.GetItemByItemIdAsync(id);
-            return result.FirstOrDefault();
+            return result;
         }
 
         public virtual Task<List<Item>> GetItemsByIdAsync(int Id)
@@ -60,7 +60,6 @@ namespace AES.Data.Repositories
             throw new NotImplementedException();
         }
 
-       
 
         public IQueryable<Item> Table => throw new NotImplementedException();
 

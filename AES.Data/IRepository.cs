@@ -9,19 +9,13 @@ namespace AES.Data
     public interface IRepository<T>
     {
         /// <summary>
-        /// Get Item By Identifier
-        /// </summary>
-        /// <param name="Id"></param>
-        /// <returns></returns>
-        Task<T> GetByIdAsync(int Id);
-
-        /// <summary>
         /// Get Items By Identifier
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
-        Task<List<T>> GetItemsByIdAsync(int Id);
+        Task<List<T>> GetByIdAsync(string Id);
 
+        
         /// <summary>
         /// Search Item By Search Text
         /// </summary>

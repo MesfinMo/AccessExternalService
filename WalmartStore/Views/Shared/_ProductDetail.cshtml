@@ -1,0 +1,25 @@
+﻿
+@model ProductDetailViewModel
+
+<div>
+    <div>@Html.DisplayFor(model => model.Product.ProductId)</div>
+    <div>@Html.DisplayFor(model => model.Product.ProductName)</div>
+    <div>@Html.DisplayFor(model => model.Product.ShortDescription)</div>
+    <div>@Html.DisplayFor(model => model.Product.ThumbnailUri)</div>
+</div>
+
+<table class="table-striped">
+    @foreach (var product in Model.Recommendations)
+    {
+        <tr>
+            <td class="usa-grid">
+                @Html.DisplayFor(model => product.ProductId)
+                <a href="#@product.ProductId" id="productDetail">@product.ProductId</a>
+            </td>
+            <td class="usa-grid">
+                @Html.DisplayFor(model => product.Product.ProductName)
+            </td>
+        </tr>
+
+    }
+</table>

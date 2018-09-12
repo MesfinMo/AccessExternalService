@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace AES.Domains.Service
 {
-    public class Recommendation 
+    public class SearchProduct
     {
         public string ProductId { get; set; }
-        public string OfferType { get; set; }
-        public bool IsTwoDayShippingEligible { get; set; }
-
         public Product Product { get; set; }
     }
 }

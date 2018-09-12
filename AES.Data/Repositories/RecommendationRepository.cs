@@ -17,12 +17,7 @@ namespace AES.Data.Repositories
         }
        
 
-        public virtual Task<ItemRecommendation> GetByIdAsync(int Id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual async Task<List<ItemRecommendation>> GetItemsByIdAsync(int id)
+        public virtual async Task<List<ItemRecommendation>> GetByIdAsync(string id)
         {
             var result = await this._serviceContext.GetItemRecommendationByItemIdAsync(id);
             return result;

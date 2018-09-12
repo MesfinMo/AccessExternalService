@@ -51,9 +51,40 @@ namespace WalmartStore.Controllers
 
         public async Task<IActionResult> SearchProduct(string searchTerm)
         {
-            var result = await _productService.SearchProductByTextAsync(searchTerm);
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                var result = await _productService.SearchProductByTextAsync(searchTerm);
+                return PartialView("_SearchResult", result);
+            } else
+            {
+                var result = new ErrorViewModel { ErrorMessage = "Please enter search term, and try again", ErrorLevel = ErrorLevel.Serious };
+                return PartialView("_ErrorMessage", result);
+            }
+           
+        }
+
+        public async Task<IActionResult> ProductDetail(string productId)
+        {
+            var result = new ProductDetailViewModel();
+            try
+            {
+                result.Product = await _productService.GetProductByIdAsync(productId);
+            }
+            catch(Exception ex)
+            {
+                var err = new ErrorViewModel { ErrorMessage = ex.Message, ErrorLevel = ErrorLevel.Serious };
+                return PartialView("_ErrorMessage", err);
+            }
+            try
+            {
+                result.Recommendations = await _productService.GetProductRecommendationByIdAsync(productId);
+            }
+            catch(Exception ex)
+            {
+                result.Recommendations = new List<AES.Domains.Service.Recommendation>();
+            }
             //var model = _goalRepository.GetPayBandDimensionsByPayBandId(payBandId);
-            return PartialView("_SearchResult", result);
+            return PartialView("_ProductDetail", result);
         }
 
     }

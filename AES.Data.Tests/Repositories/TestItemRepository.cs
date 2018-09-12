@@ -21,9 +21,9 @@ namespace AES.Data.Tests.Repositories
         public async Task GetById_ShouldReturnProductForGivenId()
         {
             var items = new Item[]  {
-                new Item { itemId= 12417832 }
+                new Item { itemId= "12417832" }
             };
-            var itemId = 12417832;
+            var itemId = "12417832";
 
             var mock = new Mock<IServiceContext>();
             mock.Setup(m => m.GetItemByItemIdAsync(itemId)).Returns(Task.FromResult(items.ToList()));
@@ -33,7 +33,7 @@ namespace AES.Data.Tests.Repositories
 
             var result = await itemRepository.GetByIdAsync(itemId);
 
-            Assert.AreEqual(result.itemId, itemId);
+            Assert.AreEqual(result[0].itemId, itemId);
             mock.VerifyAll();
 
         }

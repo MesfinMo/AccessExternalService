@@ -52,6 +52,12 @@
         <span class="sr-only">Next</span>
     </a>
 </div>
+<div class="row">
+    <span>
+        <input id="searchBox" type="text" />
+        <input id="searchButton" type="button" value="Search" />
+    </span>
+</div>
 
 <div class="row">
     <div class="col-md-12">
@@ -60,55 +66,78 @@
 </div>
 
 
-<div class="row">
-    <div class="col-md-3">
-        <h2>Application uses</h2>
-        <ul>
-            <li>Sample pages using ASP.NET Core MVC</li>
-            <li>Theming using <a href="https://go.microsoft.com/fwlink/?LinkID=398939">Bootstrap</a></li>
-        </ul>
+    <div class="row">
+        <div class="col-md-3">
+            <h2>Application uses</h2>
+            <ul>
+                <li>Sample pages using ASP.NET Core MVC</li>
+                <li>Theming using <a href="https://go.microsoft.com/fwlink/?LinkID=398939">Bootstrap</a></li>
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <h2>How to</h2>
+            <ul>
+                <li><a href="https://go.microsoft.com/fwlink/?LinkID=398600">Add a Controller and View</a></li>
+                <li><a href="https://go.microsoft.com/fwlink/?LinkId=699315">Manage User Secrets using Secret Manager.</a></li>
+                <li><a href="https://go.microsoft.com/fwlink/?LinkId=699316">Use logging to log a message.</a></li>
+                <li><a href="https://go.microsoft.com/fwlink/?LinkId=699317">Add packages using NuGet.</a></li>
+                <li><a href="https://go.microsoft.com/fwlink/?LinkId=699319">Target development, staging or production environment.</a></li>
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <h2>Overview</h2>
+            <ul>
+                <li><a href="https://go.microsoft.com/fwlink/?LinkId=518008">Conceptual overview of what is ASP.NET Core</a></li>
+                <li><a href="https://go.microsoft.com/fwlink/?LinkId=699320">Fundamentals of ASP.NET Core such as Startup and middleware.</a></li>
+                <li><a href="https://go.microsoft.com/fwlink/?LinkId=398602">Working with Data</a></li>
+                <li><a href="https://go.microsoft.com/fwlink/?LinkId=398603">Security</a></li>
+                <li><a href="https://go.microsoft.com/fwlink/?LinkID=699321">Client side development</a></li>
+                <li><a href="https://go.microsoft.com/fwlink/?LinkID=699322">Develop on different platforms</a></li>
+                <li><a href="https://go.microsoft.com/fwlink/?LinkID=699323">Read more on the documentation site</a></li>
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <h2>Run &amp; Deploy</h2>
+            <ul>
+                <li><a href="https://go.microsoft.com/fwlink/?LinkID=517851">Run your app</a></li>
+                <li><a href="https://go.microsoft.com/fwlink/?LinkID=517853">Run tools such as EF migrations and more</a></li>
+                <li><a href="https://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
+            </ul>
+        </div>
     </div>
-    <div class="col-md-3">
-        <h2>How to</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398600">Add a Controller and View</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699315">Manage User Secrets using Secret Manager.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699316">Use logging to log a message.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699317">Add packages using NuGet.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699319">Target development, staging or production environment.</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Overview</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=518008">Conceptual overview of what is ASP.NET Core</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699320">Fundamentals of ASP.NET Core such as Startup and middleware.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398602">Working with Data</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398603">Security</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699321">Client side development</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699322">Develop on different platforms</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699323">Read more on the documentation site</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Run &amp; Deploy</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517851">Run your app</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517853">Run tools such as EF migrations and more</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
-        </ul>
-    </div>
-</div>
-<script src="~/lib/jquery/dist/jquery.js"></script>
-<script src="~/js/base.js"></script>
-<script>
-    $(document).ready(function () {
-        console.log('jquery test');
-        $ws.utilities.getHtml("/Home/SearchProduct?searchTerm=microwave", successSearch, null)
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/js/base.js"></script>
+    <script>
+        $(document).ready(function () {
+            //console.log('jquery test');
+            getProductDetail();
+            function successSearch(data) {
+                $('#searchResult').html(data);
+            }
 
-        function successSearch(data) {
-            $('#searchResult').html(data);
-        }
+            function successProductDetail(data) {
+                $('#searchResult').html(data);
+            }
 
-    });
-</script>
+            function getProductDetail(prodId) {
+                if (prodId || window.location.hash) {
+                    var productId = prodId ? prodId : window.location.hash.substr(1);
+                    $ws.utilities.getHtml("/Home/ProductDetail?productId=" + productId, successProductDetail, null)
+                } else {
+                    console.log('hash fragment not found');
+
+                }
+            }
+
+            $('#searchButton').on('click', function (e) {
+                var searchTerm = $('#searchBox').val();
+                $ws.utilities.getHtml("/Home/SearchProduct?searchTerm=" + searchTerm, successSearch, null)
+            });
+
+            $(document).on('click', '#productDetail', function (e) {
+                var prodId = $(e.target).text();
+                getProductDetail(prodId);
+            });
+
+        });
+    </script>

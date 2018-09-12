@@ -1,14 +1,15 @@
 ﻿@model AES.Domains.Service.SearchResult
 
 <table class="table-striped">
-    @foreach (var product in Model.Products)
+    @foreach (var product in Model.SearchProducts)
     {
         <tr>
             <td class="usa-grid">
-                @Html.DisplayFor(model => product.ProductId)
+                @Html.DisplayFor(model => product.Product.ProductId)
+                <a href="#@product.Product.ProductId" id="productDetail">@product.Product.ProductId</a>
             </td>
             <td class="usa-grid">
-                @Html.DisplayFor(model => product.ProductName)
+                @Html.DisplayFor(model => product.Product.ProductName)
             </td>
         </tr>
 

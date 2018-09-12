@@ -20,7 +20,7 @@ namespace AES.Data.Tests.Repositories
 
         public async Task SearchByText_ShouldReturnSearchResultForSearchTex()
         {
-            var searchItem = new ItemSearch { query = "ipod", items = new Item[] { new Item { itemId = 42608125 } } };
+            var searchItem = new ItemSearch { query = "ipod", items = new Item[] { new Item { itemId = "42608125" } } };
             
             var searchText = "ipod";
 

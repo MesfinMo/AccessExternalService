@@ -37,3 +37,5 @@ C:\Employment\walmartlabs\AccessExternalService\WalmartStore\bin\Debug\netcoreap
 C:\Employment\walmartlabs\AccessExternalService\WalmartStore\bin\Debug\netcoreapp2.1\AES.Data.pdb
 C:\Employment\walmartlabs\AccessExternalService\WalmartStore\obj\Debug\netcoreapp2.1\WalmartStore.csprojAssemblyReference.cache
 C:\Employment\walmartlabs\AccessExternalService\WalmartStore\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_SearchResult.g.cshtml.cs
+C:\Employment\walmartlabs\AccessExternalService\WalmartStore\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_ProductDetail.g.cshtml.cs
+C:\Employment\walmartlabs\AccessExternalService\WalmartStore\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_ErrorMessage.g.cshtml.cs

@@ -15,6 +15,6 @@ namespace AES.Domains.Service
 
         public int ResultSize { get; set; }
 
-        public List<Product> Products { get; set; }
+        public List<SearchProduct> SearchProducts { get; set; }
     }
 }

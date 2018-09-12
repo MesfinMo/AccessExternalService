@@ -16,12 +16,8 @@ namespace AES.Data.Repositories
             _serviceContext = serviceContext;
         }
 
-        public virtual Task<ItemSearch> GetByIdAsync(int Id)
-        {
-            throw new NotImplementedException();
-        }
 
-        public virtual Task<List<ItemSearch>> GetItemsByIdAsync(int Id)
+        public virtual Task<List<ItemSearch>> GetByIdAsync(string Id)
         {
             throw new NotImplementedException();
         }

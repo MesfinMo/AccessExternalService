@@ -29,22 +29,22 @@ namespace AES.Service.Tests
             //Mapper.Reset();
             //Mapper.Initialize(x => x.AddProfile<MappingProfile>());
 
-            var item = new Item { itemId = 12417832 };
+            var item = new Item[] { new Item { itemId = "12417832" } };
 
             itemmock = new Mock<IRepository<Item>>();
-            itemmock.Setup(m => m.GetByIdAsync(item.itemId)).Returns(Task.FromResult(item));
+            itemmock.Setup(m => m.GetByIdAsync(item[0].itemId)).Returns(Task.FromResult(item.ToList()));
 
-            var searchProduct = new ItemSearch { query = "ipod", items = new Item[] { new Item { itemId = 42608125 } } };
+            var searchProduct = new ItemSearch { query = "ipod", items = new Item[] { new Item { itemId = "42608125" } } };
            
 
             searchmock = new Mock<IRepository<ItemSearch>>();
             searchmock.Setup(m => m.SearchByTextAsync(searchProduct.query)).Returns(Task.FromResult(searchProduct));
 
-            var recommendations = new List<ItemRecommendation>() { new ItemRecommendation { itemId = 42608125, name = "Onn by Walmart skin for apple ipod touch", offerType = "ONLINE_AND_STORE" } };
-            var recommendItemId = 12417832;
+            var recommendations = new List<ItemRecommendation>() { new ItemRecommendation { itemId = "42608125", name = "Onn by Walmart skin for apple ipod touch", offerType = "ONLINE_AND_STORE" } };
+            var recommendItemId = "12417832";
 
             recommndationmock = new Mock<IRepository<ItemRecommendation>>();
-            recommndationmock.Setup(m => m.GetItemsByIdAsync(recommendItemId)).Returns(Task.FromResult(recommendations));
+            recommndationmock.Setup(m => m.GetByIdAsync(recommendItemId)).Returns(Task.FromResult(recommendations));
         }
 
         [TestMethod]
@@ -52,19 +52,25 @@ namespace AES.Service.Tests
         public async Task SearchProductByText_ShouldReturnSearchResultForSearchText()
         {
             var searchText = "ipod";
-            productService = new ProductService(itemmock.Object, searchmock.Object, recommndationmock.Object);
+
+            var item = new Item[] { new Item { itemId = "42608125", name = "Onn by Walmart skin for apple ipod touch" } };
+
+            var itemSearchmock = new Mock<IRepository<Item>>();
+            itemSearchmock.Setup(m => m.GetByIdAsync(item[0].itemId)).Returns(Task.FromResult(item.ToList()));
+
+            productService = new ProductService(itemSearchmock.Object, searchmock.Object, recommndationmock.Object);
 
             var result = await productService.SearchProductByTextAsync(searchText);
 
             Assert.AreEqual(result.SearchTerm, searchText);
-            Assert.AreEqual(result.Products[0].ProductId, 42608125);
+            Assert.AreEqual(result.SearchProducts[0].Product.ProductId, "42608125");
 
         }
         [TestMethod]
 
         public async Task GetProductById_ShouldReturnProductForGivenId()
         {
-            var productId = 12417832;
+            var productId = "12417832";
             productService = new ProductService(itemmock.Object, searchmock.Object, recommndationmock.Object);
 
             var result = await productService.GetProductByIdAsync(productId);
@@ -77,17 +83,23 @@ namespace AES.Service.Tests
 
         public async Task GetProductRecommendationById_ShouldReturnRecommendationsForProduct()
         {
-            var productId = 12417832;
+            var productId = "12417832";
             var OfferType = "ONLINE_AND_STORE";
             var productName = "Onn by Walmart skin for apple ipod touch";
-            productService = new ProductService(itemmock.Object, searchmock.Object, recommndationmock.Object);
+
+            var item = new Item[] { new Item { itemId = "42608125", name= "Onn by Walmart skin for apple ipod touch" } };
+
+            var itemRecmock = new Mock<IRepository<Item>>();
+            itemRecmock.Setup(m => m.GetByIdAsync(item[0].itemId)).Returns(Task.FromResult(item.ToList()));
+
+            productService = new ProductService(itemRecmock.Object, searchmock.Object, recommndationmock.Object);
 
             var result = await productService.GetProductRecommendationByIdAsync(productId);
 
             Assert.IsTrue(result != null, "Should not return null");
             Assert.IsTrue(result.Count > 0, "Should return at least one recommendation");
             Assert.AreEqual(result[0].OfferType, OfferType);
-            Assert.AreEqual(result[0].ProductName, productName);
+            Assert.AreEqual(result[0].Product.ProductName, productName);
 
 
         }

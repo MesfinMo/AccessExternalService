@@ -25,24 +25,63 @@ namespace AES.Service.Products
         }
         public async Task<SearchResult> SearchProductByTextAsync(string searchText)
         {
+            SearchResult productSearch = null;
             var result = await this._searchRepository.SearchByTextAsync(searchText);
-            var productSearch = result.ToModel(); //AutoMapper.Mapper.Map<SearchResult>(result);
+            if (result != null && result.items != null)
+            {
+                var itemIds = string.Empty;
+                foreach (var item in result.items)
+                {
+                    itemIds = itemIds + item.itemId + ",";
+                }
+                var items = await this._itemRepository.GetByIdAsync(itemIds.TrimEnd(','));
 
+                productSearch = result.ToModel(); //AutoMapper.Mapper.Map<SearchResult>(result);
+
+                if(productSearch != null && productSearch.SearchProducts != null)
+                {
+                    foreach(var product in productSearch.SearchProducts)
+                    {
+                        product.Product = items.Find(x => x.itemId == product.ProductId).ToModel();
+                    }
+                }
+            }
             return productSearch;
         }
-        public async Task<Product> GetProductByIdAsync(int productId)
+        public async Task<Product> GetProductByIdAsync(string productId)
         {
-            var result = await this._itemRepository.GetByIdAsync(productId);
-            var product = result.ToModel(); // AutoMapper.Mapper.Map<Product>(result);
+            var result = await this._itemRepository.GetByIdAsync(productId.ToString());
+            var product = result[0].ToModel(); // AutoMapper.Mapper.Map<Product>(result);
 
             return product;
         }
 
-        public async Task<List<Recommendation>> GetProductRecommendationByIdAsync(int productId)
+        public async Task<List<Recommendation>> GetProductRecommendationByIdAsync(string productId)
         {
-            var result = await this._recommendationRepository.GetItemsByIdAsync(productId);
-            var recommendation = result.ToListModel();// AutoMapper.Mapper.Map<List<Recommendation>>(result);
+            List<Recommendation> recommendation = null;
+            var result = await this._recommendationRepository.GetByIdAsync(productId);
+            if (result != null)
+            {
+                result = result.Take(10).ToList();
+                var itemIds = string.Empty;
+                foreach (var item in result)
+                {
+                    itemIds = itemIds + item.itemId + ",";
+                }
+                var items = await this._itemRepository.GetByIdAsync(itemIds.TrimEnd(','));
 
+                recommendation = result.ToListModel();// AutoMapper.Mapper.Map<List<Recommendation>>(result);
+
+                if (recommendation != null)
+                {
+                    foreach (var recomm in recommendation)
+                    {
+                        recomm.Product = items.Find(x => x.itemId == recomm.ProductId).ToModel();
+                    }
+                }
+
+               
+            }
             return recommendation;
         }
 

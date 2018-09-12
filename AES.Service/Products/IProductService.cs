@@ -10,7 +10,7 @@ namespace AES.Service.Products
     public interface IProductService
     {
         Task<SearchResult> SearchProductByTextAsync(string searchText);
-        Task<Product> GetProductByIdAsync(int productId);
-        Task<List<Recommendation>> GetProductRecommendationByIdAsync(int productId);
+        Task<Product> GetProductByIdAsync(string productId);
+        Task<List<Recommendation>> GetProductRecommendationByIdAsync(string productId);
     }
 }

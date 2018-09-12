@@ -34,8 +34,7 @@ namespace AES.Data.DataSources
                     var result = await response.Content.ReadAsStringAsync();
 
                     var serializedItems = JsonConvert.DeserializeObject<ItemSearch>(result);
-
-                    itemSearch = serializedItems;
+                    itemSearch = serializedItems != null ? serializedItems : throw new Exception("Results not found");
                 }
             }
             catch (Exception ex)
@@ -45,7 +44,7 @@ namespace AES.Data.DataSources
             return itemSearch;
         }
 
-        public async Task<List<Item>> GetItemByItemIdAsync(int itemId)
+        public async Task<List<Item>> GetItemByItemIdAsync(string itemId)
         {
             var _client = new HttpClient();
             List<Item> items = null;
@@ -61,8 +60,7 @@ namespace AES.Data.DataSources
                     var result = await response.Content.ReadAsStringAsync();
 
                     var serializedItems = JsonConvert.DeserializeObject<Root>(result);
-
-                    items = serializedItems.items.ToList();
+                    items =  serializedItems.items != null ?  serializedItems.items.ToList() : throw new Exception(result);
                 }
             }
             catch(Exception ex)
@@ -72,7 +70,7 @@ namespace AES.Data.DataSources
             return items;
         }
 
-        public async Task<List<ItemRecommendation>> GetItemRecommendationByItemIdAsync(int itemId)
+        public async Task<List<ItemRecommendation>> GetItemRecommendationByItemIdAsync(string itemId)
         {
             var _client = new HttpClient();
             List<ItemRecommendation> itemRecommendation = null;
@@ -87,14 +85,17 @@ namespace AES.Data.DataSources
                 {
                     var result = await response.Content.ReadAsStringAsync();
 
+                    //JsonSerializerSettings settings = new JsonSerializerSettings();
+                    //settings.MissingMemberHandling = MissingMemberHandling.Error;
+
                     var serializedItems = JsonConvert.DeserializeObject<List<ItemRecommendation>>(result);
 
-                    itemRecommendation = serializedItems;
+                    itemRecommendation = serializedItems != null ? serializedItems : throw new Exception(result);
                 }
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("No recommendation is found for this product");
             }
             return itemRecommendation;
         }
