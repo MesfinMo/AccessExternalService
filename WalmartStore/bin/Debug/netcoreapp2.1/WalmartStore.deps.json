@@ -22,7 +22,7 @@
   },
   "targets": {
     ".NETCoreApp,Version=v2.1": {
-      "WalmartStore/1.0.0": {
+      "walmartstore/1.0.0": {
         "dependencies": {
           "AES.Domains": "1.0.0",
           "AES.Service": "1.0.0",
@@ -31,10 +31,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.1.1"
         },
         "runtime": {
-          "WalmartStore.dll": {}
+          "walmartstore.dll": {}
         },
         "compile": {
-          "WalmartStore.dll": {}
+          "walmartstore.dll": {}
         }
       },
       "Microsoft.CodeAnalysis.CSharp.Workspaces/2.8.0": {
@@ -3491,7 +3491,7 @@
     }
   },
   "libraries": {
-    "WalmartStore/1.0.0": {
+    "walmartstore/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

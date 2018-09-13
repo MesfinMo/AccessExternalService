@@ -17,7 +17,7 @@ namespace WalmartStore.Controllers
         {
             _productService = productService;
     }
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             //var result = await _productService.SearchProductByTextAsync("ipod");
             return View();
@@ -81,6 +81,7 @@ namespace WalmartStore.Controllers
             }
             catch(Exception ex)
             {
+                string error = ex.Message;
                 result.Recommendations = new List<AES.Domains.Service.Recommendation>();
             }
             //var model = _goalRepository.GetPayBandDimensionsByPayBandId(payBandId);
