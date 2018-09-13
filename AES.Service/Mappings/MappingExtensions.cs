@@ -22,7 +22,11 @@ namespace AES.Service.Mappings
                 ProductName = entity.name,
                 Price = entity.salePrice,
                 ShortDescription = entity.shortDescription,
-                ThumbnailUri = entity.thumbnailImage
+                LongDescription = entity.longDescription,
+                ThumbnailUri = entity.thumbnailImage,
+                MediumThumbnailUri = entity.mediumImage,
+                LargeImageUri = entity.largeImage,
+                TwoDayShipping = entity.isTwoDayShippingEligible ? "2-day shipping" : string.Empty
             };
         }
 

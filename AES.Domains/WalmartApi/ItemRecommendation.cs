@@ -11,6 +11,6 @@ namespace AES.Domains.WalmartApi
         public GiftOptions giftOptions { get; set; }
         public ImageEntity[] imageEntities { get; set; }
         public string offerType { get; set; }
-        public bool isTwoDayShippingEligible { get; set; }
+        
     }
 }

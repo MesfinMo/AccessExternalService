@@ -39,5 +39,6 @@ namespace AES.Domains.WalmartApi
         public string affiliateAddToCartUrl { get; set; }
         public bool freeShippingOver35Dollars { get; set; }
         public bool availableOnline { get; set; }
+        public bool isTwoDayShippingEligible { get; set; }
     }
 }

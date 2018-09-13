@@ -1,25 +1,46 @@
 ﻿
 @model ProductDetailViewModel
 
-<div>
-    <div>@Html.DisplayFor(model => model.Product.ProductId)</div>
-    <div>@Html.DisplayFor(model => model.Product.ProductName)</div>
-    <div>@Html.DisplayFor(model => model.Product.ShortDescription)</div>
-    <div>@Html.DisplayFor(model => model.Product.ThumbnailUri)</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-6">
+            <div class="card card-bg">
+                <div><img src="@Model.Product.LargeImageUri" /></div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card card-bg">
+                <div class="detail-title">@Model.Product.ProductName</div>
+                <div class="price padding-top">$@Model.Product.Price</div>
+                <h4 class="padding-top">Product highlights</h4>
+                <div class="">@Model.Product.LongDescription</div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<table class="table-striped">
-    @foreach (var product in Model.Recommendations)
-    {
-        <tr>
-            <td class="usa-grid">
-                @Html.DisplayFor(model => product.ProductId)
-                <a href="#@product.ProductId" id="productDetail">@product.ProductId</a>
-            </td>
-            <td class="usa-grid">
-                @Html.DisplayFor(model => product.Product.ProductName)
-            </td>
-        </tr>
+<h3 class="padding-top">Recommendations</h3>
+<div class="row padding-top">
+    <div class="col-md-12">
+        @{var i = 0; }
+        @foreach (var product in Model.Recommendations)
+        {
+            if (i % 6 == 0)
+            {<div class="row"></div> }
+            <div class="col-md-2 product-name-search pull-left">
+                <div class="card card-bg">
+                    <div><a href="#@product.Product.ProductId" id="productThumb"><img src="@product.Product.ThumbnailUri" data-productId="@product.Product.ProductId"  /></a></div>
+                    <div class="padding-top"><a href="#@product.Product.ProductId" data-productId="@product.Product.ProductId" id="productName">@product.Product.ProductName</a></div>
+                    <div class="price">$@product.Product.Price</div>
+                    <div class="twodayshipping">@product.Product.TwoDayShipping</div>
+                </div>
+            </div>
 
-    }
-</table>
+            i++;
+        }
+
+    </div>
+</div>
+

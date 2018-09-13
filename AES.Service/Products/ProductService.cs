@@ -29,6 +29,9 @@ namespace AES.Service.Products
             var result = await this._searchRepository.SearchByTextAsync(searchText);
             if (result != null && result.items != null)
             {
+                //TODO: limit the number of results to be returned from query parameter to the api
+                //It's not currently working for some products (eg. tee) for unknown reason
+                result.items = result.items.ToList().Take(10).ToArray();
                 var itemIds = string.Empty;
                 foreach (var item in result.items)
                 {
@@ -62,6 +65,8 @@ namespace AES.Service.Products
             var result = await this._recommendationRepository.GetByIdAsync(productId);
             if (result != null)
             {
+                //TODO: limit the number of results to be returned from query parameter to the api
+                //It's not currently working for some products(eg. tee) for unknown reason
                 result = result.Take(10).ToList();
                 var itemIds = string.Empty;
                 foreach (var item in result)
