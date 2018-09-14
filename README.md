@@ -23,3 +23,5 @@ To run the walmartstore client from a command line, use
   **dotnet run --project walmartstore.csproj**
 
 **Note:** when running this commands, make sure your under the corresponding current directory.
+
+To see a running application, click here http://walmartstore.azurewebsites.net/
