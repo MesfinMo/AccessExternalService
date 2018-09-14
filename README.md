@@ -11,7 +11,7 @@ The Walmart client application is developed using asp.net core; with supporting 
 
 **AES.Data.Tests and AES.Service.Tests:** These are the test projects which use MSTest with moq framework to mock Repository dependencies.  
 
-**WalmartStore:** This is the client application which is built using asp.net core and javascript. The .net core part acts as a web service to serve the ajax requests coming from the client application.  
+**WalmartStore:** This is the client application which is built using asp.net core and javascript. The .net core part renders the first landing page and also acts as a web service to serve the ajax requests coming from the client application.  
 
 
 To test the test projects from a command line, use the below command as an example
