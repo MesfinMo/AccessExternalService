@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AES.Service
+namespace AES.Configurations
 {
     public class Class1
     {

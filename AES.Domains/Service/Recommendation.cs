@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AES.Domains.Service
 {
-    public class Recommendation 
+    public class Recommendation
     {
         public string ProductId { get; set; }
         public string OfferType { get; set; }

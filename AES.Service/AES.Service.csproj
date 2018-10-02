@@ -44,7 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Mappings\MappingProfile.cs" />
     <Compile Include="Mappings\MappingExtensions.cs" />
     <Compile Include="Products\IProductService.cs" />

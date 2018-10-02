@@ -44,12 +44,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\BaseModel.cs" />
+    <Compile Include="Common\ErrorModel.cs" />
+    <Compile Include="Common\ResultBase.cs" />
+    <Compile Include="Common\ResultMessage.cs" />
+    <Compile Include="Result\ServiceMessage.cs" />
+    <Compile Include="Result\ServiceResult.cs" />
     <Compile Include="Service\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\Recommendation.cs" />
     <Compile Include="Service\SearchProduct.cs" />
     <Compile Include="Service\SearchResult.cs" />
     <Compile Include="WalmartApi\Attribute.cs" />
+    <Compile Include="WalmartApi\Error.cs" />
     <Compile Include="WalmartApi\GiftOptions.cs" />
     <Compile Include="WalmartApi\ImageEntity.cs" />
     <Compile Include="WalmartApi\Item.cs" />

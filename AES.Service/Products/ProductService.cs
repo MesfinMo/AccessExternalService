@@ -53,8 +53,12 @@ namespace AES.Service.Products
         }
         public async Task<Product> GetProductByIdAsync(string productId)
         {
+            Product product = null;
             var result = await this._itemRepository.GetByIdAsync(productId.ToString());
-            var product = result[0].ToModel(); // AutoMapper.Mapper.Map<Product>(result);
+            if(result != null && result.Count > 0)
+            {
+                product = result[0].ToModel(); // AutoMapper.Mapper.Map<Product>(result);
+            }
 
             return product;
         }

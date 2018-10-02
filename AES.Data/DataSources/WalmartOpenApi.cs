@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using AES.Domains.Common;
+using AES.Domains.Result;
 using AES.Domains.WalmartApi;
 using Newtonsoft.Json;
 
@@ -58,9 +60,26 @@ namespace AES.Data.DataSources
                 if (response.IsSuccessStatusCode)
                 {
                     var result = await response.Content.ReadAsStringAsync();
+                    switch(response.StatusCode)
+                    {
+                        case System.Net.HttpStatusCode.OK:
+                            
 
-                    var serializedItems = JsonConvert.DeserializeObject<Root>(result);
-                    items =  serializedItems.items != null ?  serializedItems.items.ToList() : throw new Exception(result);
+                            var serializedItems = JsonConvert.DeserializeObject<Root>(result);
+                            items = serializedItems.items != null ? serializedItems.items.ToList() : null;
+                            break;
+                        case System.Net.HttpStatusCode.BadRequest:
+                            var serializedError = JsonConvert.DeserializeObject<Error>(result);
+
+                            var error = new ErrorModel();
+                            error.Type = serializedError.code.ToString();
+                            error.Code = serializedError.code;
+                            error.Message = serializedError.message;
+                            throw new Exception(JsonConvert.SerializeObject(error));
+                        default:
+                            break;
+                    }
+                    
                 }
             }
             catch(Exception ex)

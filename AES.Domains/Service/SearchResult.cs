@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AES.Domains.Service
 {
-    public class SearchResult
+    public class SearchResult 
     {
         public string SearchTerm { get; set; }
         public string SortOrder { get; set; }

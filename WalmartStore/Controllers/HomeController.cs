@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 using AES.Service.Products;
 using Microsoft.AspNetCore.Mvc;
 using WalmartStore.Models;
+using WalmartStore.Services;
 
 namespace WalmartStore.Controllers
 {
     public class HomeController : Controller
     {
-        private IProductService _productService;
+        private IWalmartStoreService _walmartStoreService;
 
-        public HomeController(IProductService productService)
+        public HomeController(IWalmartStoreService walmartStoreService)
         {
-            _productService = productService;
-    }
+            _walmartStoreService = walmartStoreService;
+        }
         public IActionResult Index()
         {
             //var result = await _productService.SearchProductByTextAsync("ipod");
@@ -40,7 +41,8 @@ namespace WalmartStore.Controllers
 
         public IActionResult Privacy()
         {
-            return View();
+
+            return Created("url", "test"); // View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -53,7 +55,7 @@ namespace WalmartStore.Controllers
         {
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                var result = await _productService.SearchProductByTextAsync(searchTerm);
+                var result = await _walmartStoreService.SearchProductAsync(searchTerm);
                 return PartialView("_SearchResult", result);
             } else
             {
@@ -68,7 +70,7 @@ namespace WalmartStore.Controllers
             var result = new ProductDetailViewModel();
             try
             {
-                result.Product = await _productService.GetProductByIdAsync(productId);
+                result.Product = await _walmartStoreService.GetProductByIdAsync(productId);
             }
             catch(Exception ex)
             {
@@ -77,14 +79,13 @@ namespace WalmartStore.Controllers
             }
             try
             {
-                result.Recommendations = await _productService.GetProductRecommendationByIdAsync(productId);
+                result.Recommendations = await _walmartStoreService.GetProductRecommendationsByIdAsync(productId);
             }
             catch(Exception ex)
             {
                 string error = ex.Message;
                 result.Recommendations = new List<AES.Domains.Service.Recommendation>();
             }
-            //var model = _goalRepository.GetPayBandDimensionsByPayBandId(payBandId);
             return PartialView("_ProductDetail", result);
         }
 

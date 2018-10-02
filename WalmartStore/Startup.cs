@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WalmartStore.Services;
 
 namespace WalmartStore
 {
@@ -46,6 +47,9 @@ namespace WalmartStore
             services.AddTransient<IRepository<ItemSearch>, SearchRepository>();
             services.AddTransient<IRepository<ItemRecommendation>, RecommendationRepository>();
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IWalmartStoreService, WalmartStoreService>();
+            //services.AddTransient<IWalmartStoreService, WalmartStoreWebapi>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
