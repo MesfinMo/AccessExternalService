@@ -4616,6 +4616,15 @@
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
       },
+      "AES.Configurations/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/AES.Configurations.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AES.Configurations.dll": {}
+        }
+      },
       "AES.Data/1.0.0": {
         "type": "project",
         "dependencies": {
@@ -12243,6 +12252,11 @@
         "system.xml.xpath.xdocument.nuspec"
       ]
     },
+    "AES.Configurations/1.0.0": {
+      "type": "project",
+      "path": "../AES.Configurations/AES.Configurations.csproj",
+      "msbuildProject": "../AES.Configurations/AES.Configurations.csproj"
+    },
     "AES.Data/1.0.0": {
       "type": "project",
       "path": "../AES.Data/AES.Data.csproj",
@@ -12261,6 +12275,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
+      "AES.Configurations >= 1.0.0",
       "AES.Domains >= 1.0.0",
       "AES.Service >= 1.0.0",
       "Microsoft.AspNetCore.App >= 2.1.1",
@@ -12299,6 +12314,9 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
+            "C:\\Employment\\walmartlabs\\AccessExternalService\\AES.Configurations\\AES.Configurations.csproj": {
+              "projectPath": "C:\\Employment\\walmartlabs\\AccessExternalService\\AES.Configurations\\AES.Configurations.csproj"
+            },
             "C:\\Employment\\walmartlabs\\AccessExternalService\\AES.Domains\\AES.Domains.csproj": {
               "projectPath": "C:\\Employment\\walmartlabs\\AccessExternalService\\AES.Domains\\AES.Domains.csproj"
             },

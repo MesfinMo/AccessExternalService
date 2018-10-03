@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AES.Data;
 using AES.Data.DataSources;
 using AES.Data.Repositories;
 using AES.Domains.WalmartApi;
 using AES.Service.Products;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -15,6 +17,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
 namespace WalmartWebapi
 {
@@ -31,6 +34,43 @@ namespace WalmartWebapi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                //ValidateIssuerSigningKey = false,
+                //ValidateIssuer = true,
+                //ValidIssuer = "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_Me0SZg8qw/",
+                //IssuerSigningKey = new X509SecurityKey(new X509Certificate2(certLocation)),
+                ValidateAudience = false,
+                
+                
+                
+            };
+
+            services.AddAuthentication(options =>
+                    {
+                        options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                    })
+                    .AddJwtBearer(options =>
+                    {
+                        options.Authority = "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_Me0SZg8qw";
+                        //options.Audience = "http://walmartwebapi-dev.us-east-1.elasticbeanstalk.com";
+                        // options.RequireHttpsMetadata = false;
+                        options.TokenValidationParameters = tokenValidationParameters;
+            });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("WebUserReader", policy =>
+                {
+                    policy.RequireAssertion(async handler =>
+                     {
+                         var scopeClaim = handler.User.FindFirst("scope");
+                         var scopes = scopeClaim?.Value.Split(' ');
+                         var hasScope = scopes?.Where(scope => scope == "http://walmartwebapi-dev.us-east-1.elasticbeanstalk.com/walmart:search").Any() ?? false;
+                         return await Task.FromResult(hasScope);
+                     });
+                });
+            });
             services.AddTransient<IServiceContext, WalmartOpenApi>();
             services.AddTransient<IRepository<Item>, ItemRepository>();
             services.AddTransient<IRepository<ItemSearch>, SearchRepository>();
@@ -51,6 +91,7 @@ namespace WalmartWebapi
             }
 
             //app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseMvc();
         }
     }

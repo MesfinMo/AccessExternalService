@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using AES.Configurations;
 using AES.Data;
 using AES.Data.DataSources;
 using AES.Data.Repositories;
@@ -39,7 +40,7 @@ namespace WalmartStore
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
+            services.Configure<AwsCognitoSettings>(Configuration.GetSection("AwsCognitoOAuth"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddTransient<IServiceContext, WalmartOpenApi>();
@@ -47,8 +48,10 @@ namespace WalmartStore
             services.AddTransient<IRepository<ItemSearch>, SearchRepository>();
             services.AddTransient<IRepository<ItemRecommendation>, RecommendationRepository>();
             services.AddTransient<IProductService, ProductService>();
-            services.AddTransient<IWalmartStoreService, WalmartStoreService>();
-            //services.AddTransient<IWalmartStoreService, WalmartStoreWebapi>();
+            //services.AddTransient<IWalmartStoreService, WalmartStoreService>();
+            services.AddTransient<IWalmartStoreService, WalmartStoreWebapi>();
+            services.AddSingleton<ITokenService, CognitoTokenService>();
+
 
         }
 

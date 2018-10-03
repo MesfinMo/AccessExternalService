@@ -24,6 +24,7 @@
     ".NETCoreApp,Version=v2.1": {
       "WalmartStore/1.0.0": {
         "dependencies": {
+          "AES.Configurations": "1.0.0",
           "AES.Domains": "1.0.0",
           "AES.Service": "1.0.0",
           "Microsoft.AspNetCore.App": "2.1.1",
@@ -512,6 +513,14 @@
           "System.Runtime.Extensions": "4.3.0",
           "System.Threading": "4.3.0",
           "System.Threading.Tasks": "4.3.0"
+        }
+      },
+      "AES.Configurations/1.0.0": {
+        "runtime": {
+          "AES.Configurations.dll": {}
+        },
+        "compile": {
+          "AES.Configurations.dll": {}
         }
       },
       "AES.Data/1.0.0": {
@@ -3670,6 +3679,11 @@
       "sha512": "sha512-td7x21K8LalpjTWCzW/nQboQIFbq9i0r+PCyBBCdLWWnm4NBcdN18vpz/G9hCpUaCIfRL+ZxJNVTywlNlB1aLQ==",
       "path": "system.linq.parallel/4.3.0",
       "hashPath": "system.linq.parallel.4.3.0.nupkg.sha512"
+    },
+    "AES.Configurations/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "AES.Data/1.0.0": {
       "type": "project",

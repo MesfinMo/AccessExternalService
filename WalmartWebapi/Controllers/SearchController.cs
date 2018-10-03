@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using AES.Domains.Service;
 using AES.Service.Products;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,9 +21,11 @@ namespace WalmartWebapi.Controllers
             this._productService = productService;
         }
         // GET: api/Search
+        [Authorize(Policy = "WebUserReader")]
         [HttpGet("{query}", Name = "Get")]
         public async Task<ActionResult<SearchResult>> Get(string query)
         {
+            var usr = User.Claims;
             return await _productService.SearchProductByTextAsync(query);
         }
 

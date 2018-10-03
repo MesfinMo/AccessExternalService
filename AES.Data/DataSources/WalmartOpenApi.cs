@@ -114,7 +114,7 @@ namespace AES.Data.DataSources
             }
             catch (Exception ex)
             {
-                throw new Exception("No recommendation is found for this product");
+                throw new Exception("No recommendation is found for this product :" + ex.Message);
             }
             return itemRecommendation;
         }

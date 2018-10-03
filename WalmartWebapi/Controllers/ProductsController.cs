@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AES.Domains.Service;
 using AES.Service.Products;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,6 +26,7 @@ namespace WalmartWebapi.Controllers
         }
 
         // GET: api/Products/49053771
+        [Authorize(Policy = "WebUserReader")]
         [HttpGet("{productId}", Name = "GetProduct")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
@@ -47,6 +49,7 @@ namespace WalmartWebapi.Controllers
         }
 
         // GET: api/Products/49053771/Recommendations
+        [Authorize(Policy = "WebUserReader")]
         [HttpGet("{productId}/recommendations", Name = "GetProductRecommendations")]
         public async Task<ActionResult<List<Recommendation>>> GetProductRecommendations(string productId)
         {

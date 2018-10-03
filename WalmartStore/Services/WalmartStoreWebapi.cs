@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using AES.Domains.Service;
 using Newtonsoft.Json;
@@ -16,13 +17,19 @@ namespace WalmartStore.Services
 
         //private const string API_KEY = "52txne3qyx4pnke2wxacsxff";
 
+        private ITokenService _tokenService;
+        public WalmartStoreWebapi(ITokenService tokenService)
+        {
+            _tokenService = tokenService;
+        }
         public async Task<Product> GetProductByIdAsync(string productId)
         {
             var _client = new HttpClient();
             Product product = null;
             var path = "products/" + productId;
             _client.BaseAddress = new Uri(BASE_API_URI);
-
+            var token = await _tokenService.GetTokenAsync();
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             try
             {
                 HttpResponseMessage response = await _client.GetAsync(path);
@@ -47,7 +54,8 @@ namespace WalmartStore.Services
             List<Recommendation> productRecommendations = null;
             var path = "products/" + productId + "/recommendations";
             _client.BaseAddress = new Uri(BASE_API_URI);
-
+            var token = await _tokenService.GetTokenAsync();
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             try
             {
                 HttpResponseMessage response = await _client.GetAsync(path);
@@ -74,6 +82,8 @@ namespace WalmartStore.Services
             SearchResult productSearch = null;
             var path = "search/" + searchTerm;
             _client.BaseAddress = new Uri(BASE_API_URI);
+            var token = await _tokenService.GetTokenAsync();
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             try
             {

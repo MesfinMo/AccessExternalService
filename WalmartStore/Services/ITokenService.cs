@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace AES.Configurations
+namespace WalmartStore.Services
 {
-    public class Class1
+    public interface ITokenService
     {
+        Task<string> GetTokenAsync();
+
     }
 }
