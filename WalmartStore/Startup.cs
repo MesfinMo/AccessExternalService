@@ -49,9 +49,9 @@ namespace WalmartStore
             .AddCookie()
             .AddOpenIdConnect("AwsCognito", o =>
             {
-                o.ClientId = "7fd9vbf3ms8rmo6nbvqb1euksv";
-                o.ClientSecret = "1jb9lshlk8hdvatku6gj6crccipk23t2i66iic4o6r10nettgi26";
-                o.Authority = "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_Me0SZg8qw";
+                o.ClientId = Configuration.GetValue<string>("AwsCognitoOAuth:ClientId"); 
+                o.ClientSecret = Configuration.GetValue<string>("AwsCognitoOAuth:ClientSecret"); 
+                o.Authority = Configuration.GetValue<string>("AwsCognitoOAuth:Authority");
                 o.ResponseType = "code";
                 o.GetClaimsFromUserInfoEndpoint = true;
 
@@ -59,7 +59,7 @@ namespace WalmartStore
                 {
                     OnRedirectToIdentityProviderForSignOut = (context) =>
                     {
-                        var logoutUri = $"https://clientcredential.auth.us-east-1.amazoncognito.com/logout?client_id=7fd9vbf3ms8rmo6nbvqb1euksv&logout_uri=http://localhost:36355";
+                        var logoutUri = $"{Configuration.GetValue<string>("AwsCognitoOAuth:LogoutEndpoint")}?client_id={Configuration.GetValue<string>("AwsCognitoOAuth:ClientId")}&logout_uri={Configuration.GetValue<string>("AwsCognitoOAuth:LogoutUri")}";
 
                         var postLogoutUri = context.Properties.RedirectUri;
                         if (!string.IsNullOrEmpty(postLogoutUri))
@@ -80,7 +80,7 @@ namespace WalmartStore
                     }
                 };
             });
-
+            var cognitoSettings = Configuration.GetSection("AwsCognitoOAuth");
             services.Configure<AwsCognitoSettings>(Configuration.GetSection("AwsCognitoOAuth"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
