@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using AES.Service.Products;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WalmartStore.Models;
 using WalmartStore.Services;
@@ -18,13 +19,14 @@ namespace WalmartStore.Controllers
         {
             _walmartStoreService = walmartStoreService;
         }
+       // [Authorize]
         public IActionResult Index()
         {
             //var result = await _productService.SearchProductByTextAsync("ipod");
             return View();
 
         }
-
+       
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
@@ -51,6 +53,7 @@ namespace WalmartStore.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        [Authorize]
         public async Task<IActionResult> SearchProduct(string searchTerm)
         {
             if (!string.IsNullOrEmpty(searchTerm))
