@@ -61,6 +61,10 @@ namespace WalmartStore.Services
                     token = JsonConvert.DeserializeObject<CognitoToken>(result);
                     token.ExpiresAt = DateTime.UtcNow.AddSeconds(token.ExpiresIn);
                 }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
             }
             catch (Exception ex)
             {

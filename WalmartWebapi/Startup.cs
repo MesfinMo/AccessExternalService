@@ -66,7 +66,7 @@ namespace WalmartWebapi
                      {
                          var scopeClaim = handler.User.FindFirst("scope");
                          var scopes = scopeClaim?.Value.Split(' ');
-                         var hasScope = scopes?.Where(scope => scope == "http://walmartwebapi-dev.us-east-1.elasticbeanstalk.com/walmart:search").Any() ?? false;
+                         var hasScope = scopes?.Where(scope => scope == "http://walmartwebapi-dev.us-east-1.elasticbeanstalk.com/walmart:browse").Any() ?? false;
                          return await Task.FromResult(hasScope);
                      });
                 });
